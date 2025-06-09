@@ -1,6 +1,8 @@
 from fetch_articles import fetch_articles
 from summarize import summarize_article, is_relevant_article
 from generate_report import generate_html_report
+from email_sender import send_email_report
+
 
 def run():
     keyword = "intelligence artificielle"
@@ -37,6 +39,11 @@ def run():
         f.write(html_report)
 
     print("✅ Rapport généré : rapport_veille.html")
+
+      # Envoi automatique par mail
+    destinataire = "basile.sorrelsnkrs@gmail.com"  # À remplacer ou rendre dynamique
+    subject = f"📬 Rapport de veille sur '{keyword}'"
+    send_email_report(destinataire, subject, "rapport_veille.html")
 
 if __name__ == "__main__":
     run()
