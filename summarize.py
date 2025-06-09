@@ -4,7 +4,12 @@ from config import OPENAI_API_KEY
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 def summarize_article(text: str) -> str:
-    prompt = f"Fais un résumé clair et synthétique de cet article :\n\n{text[:3000]}"
+    prompt = (
+        "Tu es un expert en synthèse d'informations. Résume cet article "
+        "de façon claire et détaillée en 8 à 10 lignes, pour un lecteur professionnel "
+        "souhaitant comprendre les nouveautés autour de l'intelligence artificielle :\n\n"
+        f"{text[:3000]}"
+    )
 
     try:
         response = client.chat.completions.create(
